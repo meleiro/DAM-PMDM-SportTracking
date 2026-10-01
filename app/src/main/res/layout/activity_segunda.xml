@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    LinearLayout principal de la segunda pantalla.
+
+    LinearLayout es un ViewGroup, es decir, un contenedor
+    que permite organizar otras Views.
+
+    orientation="vertical" indica que los elementos que añadamos
+    aparecerán organizados verticalmente, uno debajo de otro.
+
+    gravity="center" hace que las Views contenidas en este
+    LinearLayout se sitúen en el centro del espacio disponible.
+
+    padding="24dp" establece un espacio interior entre los
+    límites del LinearLayout y sus elementos.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/main"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+
+    tools:context=".SegundaActivity">
+
+
+    <!--
+        TextView que muestra un mensaje en la segunda pantalla.
+
+        wrap_content indica que tanto la anchura como la altura
+        del TextView se adaptarán al tamaño de su contenido.
+
+        Como el LinearLayout padre tiene:
+
+            android:gravity="center"
+
+        este TextView aparecerá centrado dentro de la pantalla.
+    -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Segunda pantalla!" />
+
+
+</LinearLayout>

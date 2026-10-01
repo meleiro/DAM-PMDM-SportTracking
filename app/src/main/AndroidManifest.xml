@@ -1,28 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--
+    AndroidManifest.xml
+
+    Este archivo contiene información fundamental sobre
+    nuestra aplicación Android.
+
+    Entre otras cosas, permite declarar las Activities que
+    forman parte de la aplicación y establecer cuál de ellas
+    será la pantalla que se abrirá al iniciar la app.
+-->
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <!--
+        application representa nuestra aplicación.
+
+        Aquí se configuran algunas características generales,
+        como el nombre, el icono, el tema visual y determinadas
+        opciones relacionadas con Android.
+    -->
     <application
+
         android:allowBackup="true"
+
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+
+        android:label="@string/app_name"
+
         android:supportsRtl="true"
+
         android:theme="@style/Theme.SportTracking">
+
+
+        <!--
+            Declaramos MainActivity como una de las Activities
+            que pertenecen a nuestra aplicación.
+
+            android:name indica la clase Kotlin asociada
+            a esta Activity.
+
+            En este caso:
+
+                .MainActivity
+
+            corresponde a:
+
+                MainActivity.kt
+        -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.SportTracking"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+
+            <!--
+                intent-filter permite indicar que MainActivity
+                será el punto de entrada principal de la aplicación.
+
+                ACTION_MAIN identifica esta Activity como una
+                Activity principal.
+
+                CATEGORY_LAUNCHER permite que pueda iniciarse
+                desde el icono de la aplicación.
+            -->
+            <intent-filter>
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
+
         </activity>
+
+
+        <!--
+            Declaramos SegundaActivity como otra pantalla
+            disponible dentro de nuestra aplicación.
+
+            android:name=".SegundaActivity" relaciona esta
+            declaración con la clase SegundaActivity.kt.
+
+            Esta Activity podrá abrirse desde otra parte
+            de nuestra aplicación, por ejemplo mediante un Intent.
+
+            android:exported="false" indica que esta Activity
+            está destinada al uso interno de nuestra aplicación
+            y no se expone directamente a otras aplicaciones.
+        -->
+        <activity
+            android:name=".SegundaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
     </application>
 
 </manifest>

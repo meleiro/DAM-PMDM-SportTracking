@@ -1,48 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<!--
+    LinearLayout principal de la pantalla.
+
+    Un LinearLayout es un ViewGroup, es decir, un contenedor
+    capaz de almacenar y organizar otras Views.
+
+    orientation="vertical" indica que sus elementos hijos
+    se colocarán uno debajo de otro.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="30dp">
 
+
+    <!--
+        Título de la pantalla.
+
+        match_parent:
+        El TextView ocupa todo el ancho disponible de su padre.
+
+        wrap_content:
+        Su altura se adapta al contenido.
+
+        textSize utiliza sp, una unidad especialmente indicada
+        para tamaños de texto.
+    -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Iniciar Sesión"
-        android:textSize="24sp"
-        android:layout_marginTop="24dp"/>
+        android:textSize="24sp" />
 
+
+    <!--
+        Campo para introducir el nombre de usuario.
+
+        El atributo hint muestra un texto orientativo mientras
+        el usuario todavía no ha escrito nada en el campo.
+    -->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Usuario"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:hint="Usuario" />
 
+
+    <!--
+        Campo para introducir la contraseña.
+
+        inputType="textPassword" indica que el contenido
+        introducido debe tratarse como una contraseña.
+
+        Android mostrará los caracteres de forma protegida
+        mientras el usuario escribe.
+    -->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:layout_marginTop="24dp"/>
+        android:inputType="textPassword" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:gravity="center"
+
+    <!--
+        LinearLayout horizontal.
+
+        Este contenedor permite colocar los botones Entrar
+        y Cancelar uno al lado del otro.
+
+        orientation="horizontal":
+        Los elementos se distribuyen horizontalmente.
+
+        gravity="center":
+        El grupo de elementos se coloca centrado dentro
+        del espacio disponible del LinearLayout.
+    -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"       >
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entrar"
-       />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar"
-        />
+
+        <!--
+            Botón Entrar.
+
+            El atributo id proporciona un identificador único
+            a esta View.
+
+            Gracias a un id podemos localizar posteriormente
+            este botón desde código Kotlin utilizando findViewById().
+        -->
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entrar" />
+
+
+        <!--
+            Botón Cancelar.
+
+            wrap_content hace que el botón tenga únicamente
+            el tamaño necesario para mostrar su contenido.
+        -->
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar" />
+
     </LinearLayout>
+
+
+    <!--
+        Botón utilizado para navegar hacia la segunda pantalla.
+
+        Su identificador btnSegundaPantalla permitirá localizarlo
+        posteriormente desde MainActivity.kt.
+
+        match_parent hace que el botón ocupe todo el ancho
+        disponible dentro del LinearLayout principal.
+    -->
+    <Button
+        android:id="@+id/btnSegundaPantalla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Abrir segunda pantalla" />
+
 
 </LinearLayout>
