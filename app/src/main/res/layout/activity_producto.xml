@@ -1,105 +1,576 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    ConstraintLayout principal de la pantalla.
+    FICHA DE PRODUCTO CON CONSTRAINTLAYOUT
 
-    ConstraintLayout permite posicionar las Views mediante
-    relaciones o restricciones (constraints).
+    ConstraintLayout es un contenedor que permite organizar
+    los elementos de una interfaz mediante restricciones.
 
-    En lugar de indicar simplemente que los elementos aparecen
-    uno debajo de otro, como hacíamos con LinearLayout,
-    podemos indicar con qué elemento se relaciona cada View.
+    Una restricción establece una relación entre una View
+    y otro elemento de la pantalla.
 
-    xmlns:app permite utilizar los atributos específicos
-    de ConstraintLayout, que comienzan por app:.
+    Podemos relacionar una View con el contenedor padre
+    o con otra View que tenga un identificador.
+
+    Las cuatro direcciones principales son:
+
+    TOP: parte superior.
+    BOTTOM: parte inferior.
+    START: inicio horizontal.
+    END: final horizontal.
+
+    START y END se adaptan a la dirección de escritura.
+
+    En español, normalmente START corresponde a la izquierda
+    y END corresponde a la derecha.
+
+    Para utilizar las propiedades específicas de ConstraintLayout
+    declaramos el namespace xmlns:app.
+
+    Los atributos de restricciones comienzan por
+    app:layout_constraint.
+
+    Cada View debe tener determinada su posición horizontal
+    y su posición vertical.
 -->
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <!--
-        Título de la pantalla.
+        1. TITULO DE LA PANTALLA
 
-        wrap_content indica que tanto la anchura como la altura
-        se adaptarán al contenido del TextView.
+        Este TextView muestra el título principal.
 
-        Este elemento tiene dos restricciones:
+        android:id establece un identificador para la View.
 
-        START del TextView START del parent
-    TOP del TextView   TOP del parent
+        Este identificador permite localizar el elemento
+        desde Kotlin o utilizarlo como referencia
+        en las restricciones de otras Views.
 
-    "parent" hace referencia al ConstraintLayout que
-    contiene este TextView.
+        layout_width y layout_height utilizan wrap_content.
 
-    Por tanto, el TextView queda relacionado con la parte
-    superior y con el inicio del ConstraintLayout.
+        Esto significa que las dimensiones se adaptan
+        al contenido del TextView.
+
+        textSize establece el tamaño del texto.
+
+        La unidad sp se utiliza para tamaños de texto
+        y respeta las preferencias de escala del usuario.
+
+        layout_marginTop establece una separación superior
+        de 24dp respecto a la restricción correspondiente.
+
+        RESTRICCIONES
+
+        layout_constraintTop_toTopOf
+
+        Conecta la parte superior del TextView
+        con la parte superior del contenedor padre.
+
+        layout_constraintStart_toStartOf
+
+        Conecta el inicio horizontal del TextView
+        con el inicio horizontal del contenedor padre.
+
+        layout_constraintEnd_toEndOf
+
+        Conecta el final horizontal del TextView
+        con el final horizontal del contenedor padre.
+
+        Al tener restricciones START y END hacia el padre,
+        el título queda centrado horizontalmente.
+
+        El centrado utiliza el valor predeterminado
+        de horizontal_bias, que es 0.5.
     -->
+
     <TextView
         android:id="@+id/textView2"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ficha de Producto"
 
+        android:layout_marginTop="24dp"
+
+        android:text="Ficha de Producto"
+        android:textSize="24sp"
+
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <!--
-        Imagen del producto.
+        2. IMAGEN DEL PRODUCTO
 
-        La imagen tendrá un tamaño de 200dp x 200dp.
+        ImageView permite mostrar imágenes en la interfaz.
 
-        A diferencia del TextView anterior, esta View establece
-        una relación vertical con otra View.
+        La anchura y la altura tienen un valor fijo de 200dp.
 
-        TOP de imageView BOTTOM de textView2
+        Por tanto, el espacio ocupado por esta View
+        tiene unas dimensiones de 200dp por 200dp.
 
-    Esto significa que la parte superior de la imagen
-    se posicionará tomando como referencia la parte inferior
-    del TextView que contiene el título.
+        layout_marginTop establece una separación de 100dp
+        respecto a la referencia superior.
 
-    También tenemos:
+        RESTRICCION VERTICAL
 
-    START de imageView  START del parent
-    END de imageView    END del parent
+        layout_constraintTop_toBottomOf
 
-    Por tanto, horizontalmente la imagen está restringida
-    por los dos lados del ConstraintLayout.
+        Conecta la parte superior de la imagen
+        con la parte inferior del TextView del título.
 
-    horizontal_bias permite modificar la posición de una View
-    cuando está restringida tanto por START como por END.
+        La imagen se coloca debajo del título.
 
-    El valor puede estar comprendido entre 0 y 1:
+        Si el título cambia de posición vertical,
+        la imagen mantiene su relación con él.
 
-    0.0   hacia START
-    0.5   centro
-    1.0   hacia END
+        RESTRICCIONES HORIZONTALES
 
-    En este caso utilizamos 0.137, por lo que la imagen
-    aparecerá desplazada hacia START.
+        layout_constraintStart_toStartOf
 
-    layout_marginTop establece una separación de 76dp
-    entre la imagen y la referencia establecida por
-    su constraint superior.
+        Conecta el inicio de la imagen
+        con el inicio del contenedor padre.
+
+        layout_constraintEnd_toEndOf
+
+        Conecta el final de la imagen
+        con el final del contenedor padre.
+
+        Como la imagen está restringida por ambos lados
+        y utiliza el bias predeterminado de 0.5,
+        queda centrada horizontalmente.
+
+        android:src indica el recurso gráfico
+        que se muestra durante la ejecución.
+
+        android:contentDescription proporciona
+        una descripción para accesibilidad.
+
+        tools:srcCompat permite mostrar una imagen
+        de ejemplo en el editor de Android Studio.
+
+        Los atributos tools están destinados al diseño
+        y no determinan el contenido en ejecución.
     -->
+
     <ImageView
         android:id="@+id/imageView"
+
         android:layout_width="200dp"
         android:layout_height="200dp"
 
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="100dp"
+
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="Imagen del producto"
+
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <!--
+        3. NOMBRE DEL PRODUCTO
+
+        Este TextView muestra el nombre del producto.
+
+        Su anchura y altura utilizan wrap_content,
+        por lo que se adaptan al tamaño del texto.
+
+        layout_marginTop establece una separación
+        de 20dp respecto a la imagen.
+
+        RESTRICCION VERTICAL
+
+        layout_constraintTop_toBottomOf
+
+        Conecta la parte superior del nombre
+        con la parte inferior de la imagen.
+
+        Por tanto, el nombre aparece debajo
+        de la imagen del producto.
+
+        RESTRICCIONES HORIZONTALES
+
+        layout_constraintStart_toStartOf
+        layout_constraintEnd_toEndOf
+
+        Ambas restricciones utilizan parent.
+
+        Esto hace que el nombre quede centrado
+        horizontalmente en la pantalla.
+
+        La posición vertical del nombre depende
+        de la posición de la imagen.
+    -->
+
+    <TextView
+        android:id="@+id/txtProducto"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+
+        android:text="Samsung Galaxy"
+        android:textSize="22sp"
+
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!--
+        4. PRECIO DEL PRODUCTO
+
+        Este TextView muestra el precio.
+
+        En este elemento utilizamos restricciones
+        que permiten colocar una View junto a otra.
+
+        RESTRICCION HORIZONTAL
+
+        layout_constraintStart_toEndOf
+
+        Conecta el inicio horizontal del precio
+        con el final horizontal del nombre del producto.
+
+        En una interfaz de izquierda a derecha,
+        el precio se coloca a la derecha del nombre.
+
+        layout_marginStart establece una separación
+        horizontal de 16dp entre ambos elementos.
+
+        RESTRICCION VERTICAL
+
+        layout_constraintTop_toTopOf
+
+        Conecta la parte superior del precio
+        con la parte superior del nombre.
+
+        Los dos TextView quedan alineados
+        por su borde superior.
+
+        De esta manera podemos colocar elementos
+        horizontalmente sin utilizar un LinearLayout.
+
+        La posición del precio depende directamente
+        de la posición del nombre del producto.
+    -->
+
+    <TextView
+        android:id="@+id/txtPrecio"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+
+        android:text="899 €"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toEndOf="@id/txtProducto"
+        app:layout_constraintTop_toTopOf="@id/txtProducto" />
+
+
+    <!--
+        5. DESCRIPCION DEL PRODUCTO
+
+        Este TextView muestra información sobre el producto.
+
+        Aquí utilizamos una característica importante
+        de ConstraintLayout llamada Match Constraints.
+
+        layout_width tiene el valor 0dp.
+
+        En ConstraintLayout, cuando la anchura es 0dp
+        y existen restricciones horizontales adecuadas,
+        la anchura se calcula a partir del espacio disponible.
+
+        Esto se conoce como Match Constraints.
+
+        No significa que el TextView tenga anchura cero.
+
+        RESTRICCIONES HORIZONTALES
+
+        layout_constraintStart_toStartOf
+
+        Conecta el inicio de la descripción
+        con el inicio del contenedor padre.
+
+        layout_constraintEnd_toEndOf
+
+        Conecta el final de la descripción
+        con el final del contenedor padre.
+
+        MARGENES HORIZONTALES
+
+        layout_marginStart establece 24dp.
+
+        layout_marginEnd establece 24dp.
+
+        Por tanto, la descripción ocupa el espacio
+        disponible entre ambos márgenes.
+
+        RESTRICCION VERTICAL
+
+        layout_constraintTop_toBottomOf
+
+        Coloca la descripción debajo
+        del nombre del producto.
+
+        layout_marginTop añade una separación de 24dp.
+
+        La altura utiliza wrap_content.
+
+        Esto permite que el TextView aumente su altura
+        cuando el contenido ocupa varias líneas.
+    -->
+
+    <TextView
+        android:id="@+id/txtDescripcion"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+
+        android:text="Smartphone Android con una excelente pantalla, cámara de alta resolución, batería de larga duración y gran rendimiento para el uso diario."
+
+        android:textSize="16sp"
+
+        app:layout_constraintTop_toBottomOf="@id/txtProducto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!--
+        6. BOTON COMPRAR
+
+        Este botón se coloca en la parte inferior
+        del ConstraintLayout.
+
+        RESTRICCION VERTICAL
+
+        layout_constraintBottom_toBottomOf
+
+        Conecta la parte inferior del botón
+        con la parte inferior del contenedor padre.
+
+        layout_marginBottom establece una separación
+        inferior de 24dp.
+
+        RESTRICCIONES HORIZONTALES
+
+        layout_constraintStart_toStartOf
+        layout_constraintEnd_toEndOf
+
+        Ambas restricciones utilizan parent.
+
+        Por tanto, el botón queda restringido
+        horizontalmente a los dos lados del contenedor.
+
+        MATCH CONSTRAINTS
+
+        layout_width tiene el valor 0dp.
+
+        La anchura se adapta al espacio disponible
+        entre las restricciones horizontales.
+
+        MARGENES HORIZONTALES
+
+        layout_marginStart establece 40dp.
+
+        layout_marginEnd establece 40dp.
+
+        El botón deja una separación de 40dp
+        a cada lado de la pantalla.
+
+        Su posición vertical depende del contenedor
+        y no de los elementos situados encima.
+    -->
+
+    <Button
+        android:id="@+id/btnComprar"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="24dp"
+
+        android:text="Comprar"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-        app:layout_constraintHorizontal_bias="0.137"
 
-        tools:srcCompat="@tools:sample/avatars" />
+    <!--
+        7. MENSAJE DE ENVIO GRATUITO
+
+        Este TextView muestra información sobre el envío.
+
+        Aquí utilizamos restricciones verticales
+        tanto por arriba como por abajo.
+
+        RESTRICCION SUPERIOR
+
+        layout_constraintTop_toBottomOf
+
+        Conecta la parte superior del mensaje
+        con la parte inferior de la descripción.
+
+        RESTRICCION INFERIOR
+
+        layout_constraintBottom_toTopOf
+
+        Conecta la parte inferior del mensaje
+        con la parte superior del botón Comprar.
+
+        El mensaje queda situado dentro del espacio
+        comprendido entre la descripción y el botón.
+
+        RESTRICCIONES HORIZONTALES
+
+        layout_constraintStart_toStartOf
+        layout_constraintEnd_toEndOf
+
+        Ambas utilizan parent.
+
+        Esto centra horizontalmente el mensaje.
+
+        VERTICAL BIAS
+
+        layout_constraintVertical_bias permite ajustar
+        la posición vertical de una View cuando tiene
+        restricciones tanto superiores como inferiores.
+
+        Valores habituales:
+
+        0.0 sitúa la View hacia la restricción superior.
+
+        0.5 sitúa la View en el centro del espacio.
+
+        1.0 sitúa la View hacia la restricción inferior.
+
+        El valor 0.25 sitúa el mensaje más cerca
+        de la restricción superior.
+
+        El desplazamiento depende del espacio libre
+        existente entre ambas restricciones.
+    -->
+
+    <TextView
+        android:id="@+id/txtEnvio"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Envío gratuito"
+        android:textSize="16sp"
+
+        app:layout_constraintTop_toBottomOf="@id/txtDescripcion"
+        app:layout_constraintBottom_toTopOf="@id/btnComprar"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintVertical_bias="0.25" />
+
+
+    <!--
+        8. MENSAJE INFORMATIVO ADICIONAL
+
+        Este TextView muestra información complementaria.
+
+        Nos permite experimentar con dos propiedades:
+
+        horizontal_bias y vertical_bias.
+
+        RESTRICCIONES HORIZONTALES
+
+        layout_constraintStart_toStartOf
+        layout_constraintEnd_toEndOf
+
+        Ambas restricciones utilizan parent.
+
+        HORIZONTAL BIAS
+
+        layout_constraintHorizontal_bias permite
+        modificar la posición horizontal de una View
+        entre sus restricciones laterales.
+
+        Los valores habituales son:
+
+        0.0 sitúa la View hacia START.
+
+        0.5 sitúa la View en el centro.
+
+        1.0 sitúa la View hacia END.
+
+        El valor 0.3 desplaza el mensaje hacia START
+        respecto a la posición central.
+
+        RESTRICCIONES VERTICALES
+
+        layout_constraintTop_toBottomOf
+
+        Coloca el mensaje debajo del texto
+        que indica el envío gratuito.
+
+        layout_constraintBottom_toTopOf
+
+        Relaciona la parte inferior del mensaje
+        con la parte superior del botón Comprar.
+
+        VERTICAL BIAS
+
+        layout_constraintVertical_bias permite ajustar
+        la posición vertical entre ambas restricciones.
+
+        En este caso utilizamos el valor 0.7.
+
+        Esto desplaza el mensaje hacia la restricción
+        inferior dentro del espacio disponible.
+
+        horizontal_bias y vertical_bias funcionan
+        de manera independiente.
+
+        Una propiedad controla el eje horizontal
+        y la otra controla el eje vertical.
+    -->
+
+    <TextView
+        android:id="@+id/txtInformacion"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Devolución en 30 días"
+        android:textSize="14sp"
+
+        app:layout_constraintTop_toBottomOf="@id/txtEnvio"
+        app:layout_constraintBottom_toTopOf="@id/btnComprar"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintVertical_bias="0.7" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
