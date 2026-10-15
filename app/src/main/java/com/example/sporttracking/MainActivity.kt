@@ -12,6 +12,8 @@ import android.os.Bundle
 // Importamos Button para poder trabajar desde Kotlin con los botones
 // que hemos definido previamente en nuestros archivos XML.
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 
 // AppCompatActivity es la clase base que utilizaremos para nuestras Activities.
 // Nuestra MainActivity hereda de ella y obtiene el comportamiento básico
@@ -52,7 +54,11 @@ class MainActivity : ComponentActivity(){
         // los elementos que hemos definido dentro de activity_main.xml.
         setContentView(R.layout.activity_main)
 
+        val edtUsuario = findViewById<EditText>(R.id.edtUsuario)
+        val edtPassword = findViewById<EditText>(R.id.edtPassword)
 
+        val btnEntrar = findViewById<Button>(R.id.btnEntrar)
+        val btnCancelar = findViewById<Button>(R.id.btnCancelar)
         // Buscamos dentro de activity_main.xml el botón cuyo identificador es:
         //
         // android:id="@+id/btnSegundaPantalla"
@@ -63,7 +69,7 @@ class MainActivity : ComponentActivity(){
         // <Button> indica el tipo de View que estamos buscando.
         //
         // Guardamos esa referencia en una variable llamada "boton".
-        val boton = findViewById<Button>(R.id.btnSegundaPantalla)
+        val btnSegunda = findViewById<Button>(R.id.btnSegundaPantalla)
 
 
         // setOnClickListener permite indicar qué debe ocurrir cuando
@@ -71,7 +77,7 @@ class MainActivity : ComponentActivity(){
         //
         // El código situado entre las llaves { } se ejecutará
         // cada vez que el usuario pulse btnSegundaPantalla.
-        boton.setOnClickListener {
+        btnSegunda.setOnClickListener {
 
 
             // Creamos un Intent.
@@ -103,5 +109,34 @@ class MainActivity : ComponentActivity(){
             // Android abrirá esa nueva pantalla.
             startActivity(intent)
         }
+
+        btnEntrar.setOnClickListener {
+
+            val usuario = edtUsuario.text.toString().trim()
+            val password = edtPassword.text.toString()
+
+            if (usuario.isEmpty()  || password.isEmpty()){
+                Toast.makeText(
+                    this,
+                    "Debes de completar todos los campos",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val intent = Intent(
+                    this,
+                    SegundaActivity::class.java
+                )
+
+                intent.putExtra("USUARIO", usuario)
+
+                startActivity(intent)
+
+
+            }
+
+
+
+        }
+
     }
 }

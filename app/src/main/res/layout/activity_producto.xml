@@ -474,23 +474,6 @@
         existente entre ambas restricciones.
     -->
 
-    <TextView
-        android:id="@+id/txtEnvio"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="Envío gratuito"
-        android:textSize="16sp"
-
-        app:layout_constraintTop_toBottomOf="@id/txtDescripcion"
-        app:layout_constraintBottom_toTopOf="@id/btnComprar"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintVertical_bias="0.25" />
-
 
     <!--
         8. MENSAJE INFORMATIVO ADICIONAL
@@ -555,6 +538,24 @@
     -->
 
     <TextView
+        android:id="@+id/txtEnvio"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Envío gratuito"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toTopOf="@id/btnComprar"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/txtDescripcion"
+        app:layout_constraintVertical_bias="0.067" />
+
+    <TextView
         android:id="@+id/txtInformacion"
 
         android:layout_width="wrap_content"
@@ -563,14 +564,23 @@
         android:text="Devolución en 30 días"
         android:textSize="14sp"
 
-        app:layout_constraintTop_toBottomOf="@id/txtEnvio"
         app:layout_constraintBottom_toTopOf="@id/btnComprar"
-
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/txtEnvio"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnMenos"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintTop_toBottomOf="@id/txtInformacion"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="40dp"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

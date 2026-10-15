@@ -6,6 +6,7 @@ package com.example.sporttracking
 // Android puede utilizar esta información, por ejemplo, cuando
 // necesita volver a crear una Activity.
 import android.os.Bundle
+import android.widget.TextView
 
 import androidx.activity.ComponentActivity
 
@@ -50,5 +51,17 @@ class SegundaActivity : ComponentActivity() {
         // Los TextView, Button, ImageView y demás Views que
         // coloquemos en ese XML formarán la interfaz de esta pantalla.
         setContentView(R.layout.activity_segunda)
+
+        val txtBenvenida = findViewById<TextView>(R.id.txtBienvenida)
+
+        val usuario = intent.getStringExtra("USUARIO")
+
+        if (usuario.isNullOrEmpty()){
+            txtBenvenida.text = "Debes de logear un usuario"
+        } else {
+            txtBenvenida.text = "Bienvenid@, $usuario"
+        }
+
+
     }
 }

@@ -44,10 +44,18 @@
         este TextView aparecerá centrado dentro de la pantalla.
     -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtBienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Segunda pantalla!" />
+        android:text="Bienvenid@"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/btnVerProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Ver producto" />
 
 
 </LinearLayout>

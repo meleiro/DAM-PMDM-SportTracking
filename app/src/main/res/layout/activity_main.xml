@@ -44,6 +44,7 @@
         el usuario todavía no ha escrito nada en el campo.
     -->
     <EditText
+        android:id="@+id/edtUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -60,6 +61,7 @@
         mientras el usuario escribe.
     -->
     <EditText
+        android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -97,7 +99,7 @@
             este botón desde código Kotlin utilizando findViewById().
         -->
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnEntrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entrar" />
@@ -110,7 +112,7 @@
             el tamaño necesario para mostrar su contenido.
         -->
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancelar" />
